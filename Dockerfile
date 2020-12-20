@@ -1,4 +1,4 @@
-FROM: alpine:3.12
+FROM alpine:3.12
 
 LABEL name="git-mirror" \
       maintainer="Jee jee@jeer.fr" \
