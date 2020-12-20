@@ -13,6 +13,8 @@ RUN sed -i 's/http:\/\/dl-cdn.alpinelinux.org/https:\/\/mirrors.ircam.fr\/pub/' 
       git \
       bash \
       curl \
-      tzdata 
+      tzdata
 
+COPY run.sh /usr/local/bin/run.sh
 
+CMD ['/usr/local/bin/run.sh']
