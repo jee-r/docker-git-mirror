@@ -13,20 +13,20 @@ else
 fi
 
 if [ ! -z $GIT_MIRROR_REPO ]; then
-    echo "GIT_MIRROR_REPO is set : $GIT_MIRROR_USER"
+    echo "GIT_MIRROR_REPO is set : $GIT_MIRROR_REPO"
 else
     echo "[ERROR] GIT_MIRROR_REPO is not set"
 fi
 
 if [ ! -z $GIT_MIRROR_TOKEN ]; then
-    echo "mirror token is set (protected): $GIT_MIRROR_USER"
+    echo "mirror token is set (protected): $GIT_MIRROR_TOKKEN"
 else
     echo "[ERROR] GIT_MIRROR_TOKEN is not set"
 fi
 
 #PUSH
 echo "start mirroring this repo ..."
-git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$REMOTE_MIRROR_REPO $DRONE_BRANCH
+git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO $DRONE_BRANCH
 
 exit_code=$?
 if [ $exit_code != 0 ]; then
