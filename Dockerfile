@@ -18,4 +18,4 @@ RUN sed -i 's/http:\/\/dl-cdn.alpinelinux.org/https:\/\/mirrors.ircam.fr\/pub/' 
       tzdata && \
     chmod +x /usr/local/bin/run.sh
 
-ENTRYPOINT ['/usr/local/bin/run.sh']
+CMD ['/bin/bash', '-c', '/usr/local/bin/run.sh']
