@@ -19,7 +19,7 @@ else
 fi
 
 if [ ! -z $GIT_MIRROR_TOKEN ]; then
-    echo "mirror token is set (protected): $GIT_MIRROR_TOKKEN"
+    echo "GIT_MIRROR_TOKEN is set (protected): $GIT_MIRROR_TOKKEN"
 else
     echo "[ERROR] GIT_MIRROR_TOKEN is not set"
 fi
