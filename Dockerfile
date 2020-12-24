@@ -6,6 +6,8 @@ LABEL name="git-mirror" \
       url="https://git.c0de.in/jee/git-mirror" \
       org.label-schema.vcs-url="https://git.c0de.in/jee/git-mirror"
 
+COPY run.sh /usr/local/bin/run.sh
+
 RUN sed -i 's/http:\/\/dl-cdn.alpinelinux.org/https:\/\/mirrors.ircam.fr\/pub/' /etc/apk/repositories && \
     apk update && \
     apk upgrade && \
@@ -13,8 +15,7 @@ RUN sed -i 's/http:\/\/dl-cdn.alpinelinux.org/https:\/\/mirrors.ircam.fr\/pub/' 
       git \
       bash \
       curl \
-      tzdata
-
-COPY run.sh /usr/local/bin/run.sh
+      tzdata && \
+    chmod +x /usr/local/bin/run.sh
 
 CMD ['/usr/local/bin/run.sh']
