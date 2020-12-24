@@ -6,19 +6,19 @@ git checkout ${DRONE_BRANCH}
 
 #ENV
 echo "check if env is set"
-if [ -z $GIT_MIRROR_USER ]; then
+if [ ! -z $GIT_MIRROR_USER ]; then
     echo "GIT_MIRROR_USER is set : $GIT_MIRROR_USER"
 else
     echo "[ERROR] GIT_MIRROR_USER is not set"
 fi
 
-if [ -z $GIT_MIRROR_REPO ]; then
+if [ ! -z $GIT_MIRROR_REPO ]; then
     echo "GIT_MIRROR_REPO is set : $GIT_MIRROR_USER"
 else
     echo "[ERROR] GIT_MIRROR_REPO is not set"
 fi
 
-if [ -z $GIT_MIRROR_TOKEN ]; then
+if [ ! -z $GIT_MIRROR_TOKEN ]; then
     echo "mirror token is set (protected): $GIT_MIRROR_USER"
 else
     echo "[ERROR] GIT_MIRROR_TOKEN is not set"
