@@ -1,21 +1,20 @@
-FROM alpine:3.12
+FROM alpine:3.14
 
 LABEL name="git-mirror" \
       maintainer="Jee jee@jeer.fr" \
       description="push local git repo to remote repo" \
-      url="https://git.c0de.in/jee/git-mirror" \
-      org.label-schema.vcs-url="https://git.c0de.in/jee/git-mirror"
+      url="https://github.com/jee-r/docker-git-mirror" \
+      org.label-schema.vcs-url="https://github.com/jee-r/docker-git-mirror"
 
-COPY run.sh /usr/local/bin/run.sh
+COPY entrypoint /usr/local/bin/entrypoint
 
-RUN sed -i 's/http:\/\/dl-cdn.alpinelinux.org/https:\/\/mirrors.ircam.fr\/pub/' /etc/apk/repositories && \
-    apk update && \
+RUN apk update && \
     apk upgrade && \
     apk add --upgrade --no-cache \
       git \
       bash \
       curl \
       tzdata && \
-    chmod +x /usr/local/bin/run.sh
+    chmod +x /usr/local/bin/entrypoint
 
-CMD '/usr/local/bin/run.sh'
+CMD '/usr/local/bin/entrypoint'
