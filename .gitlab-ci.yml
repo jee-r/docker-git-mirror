@@ -16,7 +16,7 @@ default:
 build:
   stage: "build"
   image:
-    name: "quay.io/buildah/stable:v1.21.0"
+    name: "quay.io/buildah/stable:latest"
   script:
     - "buildah build -f Dockerfile -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} ."
     - "mkdir ${ARTIFACT_DIR}"
