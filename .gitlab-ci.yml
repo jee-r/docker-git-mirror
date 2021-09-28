@@ -14,6 +14,8 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "master"
       variables:
         TAG: "latest" 
+    - when: always
+
 
 build:
   stage: "build"
