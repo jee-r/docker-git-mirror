@@ -5,11 +5,12 @@ variables:
   BUILDAH_FORMAT: "docker"
 
 stages:
+  - tag
   - build
   - push
 
-default:
-  before_script:
+tag:
+  stage: "tag"
     script:
       - >
         if [ "${CI_COMMIT_BRANCH}" == "master" ]; then 
