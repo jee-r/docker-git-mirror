@@ -11,12 +11,12 @@ stages:
 
 tag:
   rules:
-    - if $CI_COMMIT_BRANCH == master
+    - if: $CI_COMMIT_BRANCH == master
       variables:
-        TAG = "latest" 
-    - if $CI_COMMIT_BRANCH =! master
+        TAG: "latest" 
+    - if: $CI_COMMIT_BRANCH =! master
       variables:
-        TAG = $CI_COMMIT_BRANCH 
+        TAG: $CI_COMMIT_BRANCH 
 
 build:
   stage: "build"
