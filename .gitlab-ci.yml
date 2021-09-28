@@ -34,6 +34,7 @@ push:
   only:
     - "tags"
     - "main"
+    - "dev"
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY"
