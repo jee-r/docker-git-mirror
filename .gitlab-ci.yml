@@ -3,20 +3,17 @@ variables:
   ARTIFACT_NAME: "${CI_PROJECT_NAME}-build.tar"
   STORAGE_DRIVER: "vfs"
   BUILDAH_FORMAT: "docker"
+  TAG: "${CI_COMMIT_BRANCH}"
 
 stages:
-  - tag
   - build
   - push
 
-tag:
+workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == master
+    - if: $CI_COMMIT_BRANCH == "master"
       variables:
         TAG: "latest" 
-    - if: $CI_COMMIT_BRANCH =! master
-      variables:
-        TAG: $CI_COMMIT_BRANCH 
 
 build:
   stage: "build"
