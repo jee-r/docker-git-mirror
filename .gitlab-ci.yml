@@ -110,7 +110,7 @@ push_github_registry:
 mirroring_to_github:
   stage: mirroring
   image:
-    name: "$CI_REGISTRY/$CI_REGISTRY_USER/docker-git-mirror:latest"
+    name: "${CI_REGISTRY}/${CI_REGISTRY_USER}/docker-git-mirror:latest"
     entrypoint: [""]
   only:
     - "tags"
