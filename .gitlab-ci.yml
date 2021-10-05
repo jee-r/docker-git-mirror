@@ -88,10 +88,10 @@ push_github_registry:
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $GH_REGISTRY_PASSWORD | buildah login -u $GH_REGISTRY_USER --password-stdin $GH_REGISTRY"
-    - "buildah tag ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${PROJECT_NAME}:${CI_COMMIT_SHA} ${PROJECT_NAME}:${CI_COMMIT_BRANCH} ${PROJECT_NAME}:${TAG}"
-    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
-    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_SHA}"
-    - "buildah push ${PROJECT_NAME}:${TAG}"
+    - "buildah tag ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${TAG}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${TAG}"
   dependencies:
     - "build"
       
