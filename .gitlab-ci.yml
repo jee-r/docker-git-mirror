@@ -1,11 +1,12 @@
 variables:
   ARTIFACT_DIR: "./archive" # must be relative to the build directory - https://gitlab.com/gitlab-org/gitlab-foss/-/issues/15530
   ARTIFACT_NAME: "${CI_PROJECT_NAME}-build.tar"
-  PROJECT_NAME: "git-mirror"
+  PROJECT_NAME: "git-mirror" 
   STORAGE_DRIVER: "vfs"
   BUILDAH_FORMAT: "docker"
   TAG: "${CI_COMMIT_BRANCH}"
   BUILDAH_IMAGE_VERSION: latest
+  GITLAB_NAMESPACE: "jee-r"
   
 stages:
   - build
@@ -111,7 +112,7 @@ push_github_registry:
 mirroring_to_github:
   stage: mirroring
   image:
-    name: "${CI_REGISTRY}/${CI_REGISTRY_USER}/docker-git-mirror:latest"
+    name: "${CI_REGISTRY}/${GITLAB_NAMESPACE}/docker-git-mirror:latest"
     entrypoint: [""]
   only:
     - "tags"
