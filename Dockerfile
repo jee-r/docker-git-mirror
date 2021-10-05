@@ -4,7 +4,8 @@ LABEL name="git-mirror" \
       maintainer="Jee jee@jeer.fr" \
       description="push local git repo to remote repo" \
       url="https://github.com/jee-r/docker-git-mirror" \
-      org.label-schema.vcs-url="https://github.com/jee-r/docker-git-mirror"
+      org.label-schema.vcs-url="https://github.com/jee-r/docker-git-mirror" \
+      org.opencontainers.image.source="https://github.com/jee-r/docker-git-mirror"
 
 COPY entrypoint /usr/local/bin/entrypoint
 
