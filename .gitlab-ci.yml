@@ -10,6 +10,8 @@ variables:
 stages:
   - build
   - push
+  - dockerhub
+  - github
 
 workflow:
   rules:
@@ -62,7 +64,7 @@ push_gitlab_registry:
     - "build"
 
 push_dockerhub_registry:
-  stage: "push"
+  stage: "dockerhub"
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
@@ -85,7 +87,7 @@ push_dockerhub_registry:
     - "build"
       
 push_github_registry:
-  stage: "push"
+  stage: "github"
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
