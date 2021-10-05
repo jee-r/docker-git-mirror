@@ -124,6 +124,10 @@ mirroring_to_github:
     GIT_MIRROR_REPO: "github.com/${GH_USER}/${CI_PROJECT_NAME}.git"
     GIT_MIRROR_USER: "${GH_USER}"
     GIT_MIRROR_TOKEN: "${GH_TOKEN}"
+  before_script:
+    - "git status"
+    - "rm -rf archive"
+    - "git status"
   script:
     - "ls -lsah"
     - "git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO $CI_COMMIT_BRANCH"
