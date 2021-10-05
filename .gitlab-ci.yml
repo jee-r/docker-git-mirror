@@ -42,7 +42,6 @@ build:
 
 push_gitlab_registry:
   stage: "push"
-  cache: []
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
@@ -51,6 +50,8 @@ push_gitlab_registry:
     - "master"
     - "dev"
   before_script:
+    - "cat ${XDG_RUNTIME_DIR}/containers/auth.json"
+    - "cat /run/containers/$UID/auth.json"
     - "buildah logout --all"
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
