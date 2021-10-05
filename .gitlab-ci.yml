@@ -1,5 +1,5 @@
 variables:
-  ARTIFACT_DIR: "../archive" # must be relative to the build directory - https://gitlab.com/gitlab-org/gitlab-foss/-/issues/15530
+  ARTIFACT_DIR: "./archive" # must be relative to the build directory - https://gitlab.com/gitlab-org/gitlab-foss/-/issues/15530
   ARTIFACT_NAME: "${CI_PROJECT_NAME}-build.tar"
   PROJECT_NAME: "git-mirror" 
   STORAGE_DRIVER: "vfs"
