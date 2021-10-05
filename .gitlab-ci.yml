@@ -1,6 +1,7 @@
 variables:
   ARTIFACT_DIR: "./archive" # must be relative to the build directory - https://gitlab.com/gitlab-org/gitlab-foss/-/issues/15530
   ARTIFACT_NAME: "${CI_PROJECT_NAME}-build.tar"
+  PROJECT_NAME: "git-mirror"
   STORAGE_DRIVER: "vfs"
   BUILDAH_FORMAT: "docker"
   TAG: "${CI_COMMIT_BRANCH}"
@@ -68,10 +69,10 @@ push_dockerhub_registry:
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $DH_REGISTRY_PASSWORD | buildah login -u $DH_REGISTRY_USER --password-stdin $DH_REGISTRY"
-    - "buildah tag ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} ${CI_PROJECT_NAME}:${TAG}"
-    - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH}"
-    - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_SHA}"
-    - "buildah push ${CI_PROJECT_NAME}:${TAG}"
+    - "buildah tag ${PROJECT_NAME}:${CI_COMMIT_SHA} ${PROJECT_NAME}:${CI_COMMIT_BRANCH} ${PROJECT_NAME}:${TAG}"
+    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
+    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_SHA}"
+    - "buildah push ${PROJECT_NAME}:${TAG}"
   dependencies:
     - "build"
       
@@ -87,10 +88,10 @@ push_github_registry:
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $GH_REGISTRY_PASSWORD | buildah login -u $GH_REGISTRY_USER --password-stdin $GH_REGISTRY"
-    - "buildah tag ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} ${CI_PROJECT_NAME}:${TAG}"
-    - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH}"
-    - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_SHA}"
-    - "buildah push ${CI_PROJECT_NAME}:${TAG}"
+    - "buildah tag ${PROJECT_NAME}:${CI_COMMIT_SHA} ${PROJECT_NAME}:${CI_COMMIT_BRANCH} ${PROJECT_NAME}:${TAG}"
+    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
+    - "buildah push ${PROJECT_NAME}:${CI_COMMIT_SHA}"
+    - "buildah push ${PROJECT_NAME}:${TAG}"
   dependencies:
     - "build"
       
