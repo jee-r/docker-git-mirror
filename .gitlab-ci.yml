@@ -42,6 +42,7 @@ build:
 
 push_gitlab_registry:
   stage: "push"
+  cache: []
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
@@ -65,6 +66,7 @@ push_gitlab_registry:
 
 push_dockerhub_registry:
   stage: "dockerhub"
+  cache: []
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
@@ -88,6 +90,7 @@ push_dockerhub_registry:
       
 push_github_registry:
   stage: "github"
+  cache: []
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   only:
