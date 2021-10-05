@@ -99,9 +99,9 @@ push_github_registry:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $GH_REGISTRY_PASSWORD | buildah login -u $GH_REGISTRY_USER --password-stdin $GH_REGISTRY"
     - "buildah tag ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${TAG}"
-    - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
-    - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA}"
-    - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${TAG} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${TAG}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}"
+    - "buildah push ${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${TAG} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${CI_PROJECT_NAME}:${TAG}"
   after_script:
     - "buildah logout --all"
   dependencies:
