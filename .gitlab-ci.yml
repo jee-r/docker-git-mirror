@@ -10,6 +10,7 @@ variables:
 stages:
   - build
   - push
+  - mirroring
 
 workflow:
   rules:
@@ -23,7 +24,8 @@ build:
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   script:
-    - "echo ${TAG}"
+    - "echo ${ABC}"
+    - "echo ${DEF}"
     - "echo ${CI_REGISTRY_IMAGE}"
     - "echo ${CI_REGISTRY}"
     - "echo ${CI_PROJECT_NAME}"
