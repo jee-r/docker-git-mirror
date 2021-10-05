@@ -26,6 +26,7 @@ build:
   script:
     - "echo ${CI_REGISTRY_IMAGE}"
     - "echo ${CI_REGISTRY}"
+    - "echo ${CI_REGISTRY_USER}"
     - "echo ${CI_PROJECT_NAME}"
     - "echo ${BUILDAH_IMAGE_VERSION}"
     - "buildah build -f Dockerfile -t ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ."
