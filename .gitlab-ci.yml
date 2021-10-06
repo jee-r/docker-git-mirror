@@ -1,7 +1,6 @@
 variables:
   ARTIFACT_DIR: "./archive" # must be relative to the build directory - https://gitlab.com/gitlab-org/gitlab-foss/-/issues/15530
   ARTIFACT_NAME: "${CI_PROJECT_NAME}-build.tar"
-  PROJECT_NAME: "git-mirror" 
   STORAGE_DRIVER: "vfs"
   BUILDAH_FORMAT: "docker"
   TAG: "${CI_COMMIT_BRANCH}"
@@ -19,12 +18,16 @@ workflow:
       variables:
         TAG: "latest" 
     - when: always
+      
+before_script:
+  - "export PROJECT_NAME=$(echo ${CI_PROJECT_NAME} | sed 's|^docker-||g')"
 
 build:
   stage: "build"
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   script:
+    - echo ${PROJECT_NAME}
     - "buildah build -f Dockerfile -t ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ."
     - "mkdir ${ARTIFACT_DIR}"
     - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}:${CI_COMMIT_SHA}"
