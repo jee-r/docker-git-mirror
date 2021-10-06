@@ -130,4 +130,4 @@ mirroring_to_github:
     - "git status"
   script:
     - "ls -lsah"
-    - "git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO $CI_COMMIT_BRANCH"
+    - "git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO"
