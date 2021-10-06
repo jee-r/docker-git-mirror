@@ -25,11 +25,6 @@ build:
   image:
     name: "quay.io/buildah/stable:${BUILDAH_IMAGE_VERSION}"
   script:
-    - "echo ${CI_REGISTRY_IMAGE}"
-    - "echo ${CI_REGISTRY}"
-    - "echo ${CI_REGISTRY_USER}"
-    - "echo ${CI_PROJECT_NAME}"
-    - "echo ${BUILDAH_IMAGE_VERSION}"
     - "buildah build -f Dockerfile -t ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} ."
     - "mkdir ${ARTIFACT_DIR}"
     - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}:${CI_COMMIT_SHA}"
@@ -49,8 +44,6 @@ push_gitlab_registry:
     - "main"
     - "master"
     - "dev"
-  before_script:
-    - "buildah logout --all"
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY"
@@ -58,8 +51,6 @@ push_gitlab_registry:
     - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_BRANCH} docker://${CI_REGISTRY_IMAGE}:${CI_COMMIT_BRANCH}"
     - "buildah push ${CI_PROJECT_NAME}:${CI_COMMIT_SHA} docker://${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}"
     - "buildah push ${CI_PROJECT_NAME}:${TAG} docker://${CI_REGISTRY_IMAGE}:${TAG}"
-  after_script:
-    - "buildah logout --all"
   dependencies:
     - "build"
 
@@ -72,8 +63,6 @@ push_dockerhub_registry:
     - "main"
     - "master"
     - "dev"
-  before_script:
-    - "buildah logout --all"
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $DH_REGISTRY_PASSWORD | buildah login -u $DH_REGISTRY_USER --password-stdin $DH_REGISTRY"
@@ -81,8 +70,6 @@ push_dockerhub_registry:
     - "buildah push ${DH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH} docker://${DH_REGISTRY}/${DH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
     - "buildah push ${DH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA} docker://${DH_REGISTRY}/${DH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA}"
     - "buildah push ${DH_REGISTRY_USER}/${PROJECT_NAME}:${TAG} docker://${DH_REGISTRY}/${DH_REGISTRY_USER}/${PROJECT_NAME}:${TAG}"
-  after_script:
-    - "buildah logout --all"
   dependencies:
     - "build"
       
@@ -95,8 +82,6 @@ push_github_registry:
     - "main"
     - "master"
     - "dev"
-  before_script:
-    - "buildah logout --all"
   script:
     - "buildah pull docker-archive:${ARTIFACT_DIR}/${ARTIFACT_NAME}"
     - "echo $GH_REGISTRY_PASSWORD | buildah login -u $GH_REGISTRY_USER --password-stdin $GH_REGISTRY"
@@ -104,8 +89,6 @@ push_github_registry:
     - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_BRANCH}"
     - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${CI_COMMIT_SHA}"
     - "buildah push ${GH_REGISTRY_USER}/${PROJECT_NAME}:${TAG} docker://${GH_REGISTRY}/${GH_REGISTRY_USER}/${PROJECT_NAME}:${TAG}"
-  after_script:
-    - "buildah logout --all"
   dependencies:
     - "build"
       
