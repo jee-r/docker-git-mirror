@@ -10,7 +10,7 @@ jobs:
     runs-on: ubutun-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v
+        uses: actions/checkout@v2
       - name: mirror to gitlab.com
         uses: jee-r/docker-git-mirror@v1
         with:
