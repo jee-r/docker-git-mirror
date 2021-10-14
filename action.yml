@@ -11,7 +11,7 @@ inputs:
     description: 'remote repository token/password'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'ghcr.io/jee-r/git-mirror:latest'
   env:
     GIT_MIRROR_REPO: ${{ inputs.remote_repo }}
     GIT_MIRROR_USER: ${{ inputs.remote_repo_username }}
