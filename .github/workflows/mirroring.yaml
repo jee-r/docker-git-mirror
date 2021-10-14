@@ -15,5 +15,5 @@ jobs:
         uses: jee-r/docker-git-mirror@v1
         with:
           remote_repo: "gitlab.com/jee-r/docker-git-mirror.git"
-          remote_repo_username: ${{ secret.GITLAB_USER }}
+          remote_repo_username: ${{ secrets.GITLAB_USER }}
           remote_repo_password: ${{ secrets.GITLAB_TOKEN }}
