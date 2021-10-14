@@ -30,7 +30,7 @@ fi
 
 # PUSH
 echo "start mirroring this repo ..."
-git push https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO $GIT_BRANCH
+git push --force https://$GIT_MIRROR_USER:$GIT_MIRROR_TOKEN@$GIT_MIRROR_REPO $GIT_BRANCH
 
 exit_code=$?
 if [ $exit_code != 0 ]; then
