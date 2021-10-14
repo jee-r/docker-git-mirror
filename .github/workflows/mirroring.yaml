@@ -7,7 +7,7 @@ on:
 jobs:
   mirroring:
     name: Mirror
-    run-on: ubutun-latest
+    runs-on: ubutun-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v
