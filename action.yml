@@ -13,7 +13,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    
     GIT_MIRROR_REPO: ${{ inputs.remote_repo }}
     GIT_MIRROR_USER: ${{ inputs.remote_repo_username }}
     GIT_MIRROR_TOKEN: ${{ inputs.remote_repo_password }}
