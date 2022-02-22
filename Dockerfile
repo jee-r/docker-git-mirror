@@ -7,7 +7,7 @@ LABEL name="git-mirror" \
       org.label-schema.vcs-url="https://github.com/jee-r/docker-git-mirror" \
       org.opencontainers.image.source="https://github.com/jee-r/docker-git-mirror"
 
-COPY entrypoint /usr/local/bin/entrypoint
+COPY rootfs /
 
 RUN apk update && \
     apk upgrade && \
