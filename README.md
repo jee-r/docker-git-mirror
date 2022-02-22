@@ -11,11 +11,12 @@ In this example we want mirroring the repository `foobar` to gitlab and to a sel
 
 You need to add the following secrets on the repository you want mirroring
 
-
-`GITLAB_USER`: your username on gitlab (*mikeymouse*) 
-`GITLAB_TOKEN`: your read and write gitlab token (*long alpha numeric string*)
-`GITEA_USER`: your username on gitea (*mikeymouse*) 
-`GITEA_TOKEN`: your read and write gitea token (*long alpha numeric string*)
+- for gitlab :
+    - `GITLAB_USER`: your username on gitlab (*mikeymouse*) 
+    - `GITLAB_TOKEN`: your read and write gitlab token (*long alpha numeric string*)
+- For gitea
+    - `GITEA_USER`: your username on gitea (*mikeymouse*) 
+    - `GITEA_TOKEN`: your read and write gitea token (*long alpha numeric string*)
 
 ### Workflow  
 
