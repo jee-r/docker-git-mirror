@@ -18,4 +18,4 @@ RUN apk update && \
       tzdata && \
     chmod +x /usr/local/bin/entrypoint
 
-CMD '/usr/local/bin/entrypoint'
+ENTRYPOINT '/usr/local/bin/entrypoint'
