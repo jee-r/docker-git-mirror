@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Dirty fix for : fatal: unsafe repository ('/github/workspace' is owned by someone else)
+# https://github.com/github-actions-x/commit/pull/31
+echo "git config safe dir /github/workspace"
+git config --global --add safe.directory /github/workspace
+
 # GET BRANCH NAME
 echo "get proper branch name"
 GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
