@@ -2,7 +2,7 @@
 
 # Dirty fix for : fatal: unsafe repository ('/github/workspace' is owned by someone else)
 # https://github.com/github-actions-x/commit/pull/31
-
+echo "git config safe dir /github/workspace"
 git config --global --add safe.directory /github/workspace
 
 #CHECKOUT
